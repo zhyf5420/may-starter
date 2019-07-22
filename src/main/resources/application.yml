@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: may-starter
+  profiles:
+    active: dev
+
+server:
+  port: 8081
+  context-path: /${spring.application.name}
+
+#系统设置
+app:
+  swagger-show: 0 # api 0 show 1 hidden
+  tempPath: /home/${spring.application.name}/temp
+  filePath: /home/${spring.application.name}/file
+
+logging:
+  config: classpath:logback-spring.xml
+  path: /home/${spring.application.name}/log

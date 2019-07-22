@@ -1,0 +1,33 @@
+spring:
+  data:
+    redis:
+      repositories:
+        enabled: false
+  datasource:
+    url: jdbc:mysql://192.168.6.66:3306/may-starter?zeroDateTimeBehavior=convertToNull&useUnicode=true&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    # 自动创建数据库表
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        enable_lazy_load_no_trans: true
+  redis:
+    database: 0
+    host: 192.168.6.66
+    port: 6379
+    password:
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/static/,classpath:/public/
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+
