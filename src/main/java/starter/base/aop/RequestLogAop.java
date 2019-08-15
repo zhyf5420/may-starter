@@ -11,8 +11,8 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import starter.base.dto.IOperatorInfo;
-import starter.bussiness.auth.AuthService;
-import starter.bussiness.auth.dto.LoginResponse;
+import starter.bussiness.service.AuthService;
+import starter.bussiness.dto.auth.LoginResponse;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;

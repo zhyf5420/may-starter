@@ -26,10 +26,10 @@ public class BasePageRequest {
 
     @Min(value = 0, message = "当前页必须大于等于0")
     @ApiModelProperty(value = "当前页码，从0开始，默认为0", example = "0")
-    private Integer number = 0;
+    private Integer page = 0;
 
-    @ApiModelProperty(value = "排序字段非必填，默认创建时间", example = "createTime")
-    private String sort = "createTime";
+    @ApiModelProperty(value = "排序字段非必填，默认创建时间", example = "id")
+    private String sort = "id";
 
     @ApiModelProperty(value = "排序顺序 asc desc，默认降序")
     private Sort.Direction order = Sort.Direction.DESC;

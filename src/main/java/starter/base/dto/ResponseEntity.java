@@ -29,7 +29,7 @@ public class ResponseEntity<T> implements Serializable {
     private String exception;
 
     @ApiModelProperty(value = "返回数据编码，0成功 其他为失败")
-    private int ecode = 0;
+    private int code = 0;
 
     @ApiModelProperty(value = "网络状态码-暂时不重要")
     private int httpStatus = 200;
@@ -39,6 +39,8 @@ public class ResponseEntity<T> implements Serializable {
 
     @ApiModelProperty(value = "返回请求数据{json}对象")
     private T data;
+
+    private Integer count = 1000;
 
     public static <T> ResponseEntity<T> ok(T data) {
         ResponseEntity<T> responseEntity = new ResponseEntity<>();
@@ -125,7 +127,7 @@ public class ResponseEntity<T> implements Serializable {
     }
 
     public static <T> ResponseEntity<T> error(ResponseEntity res) {
-        ResponseCode responseCode = ResponseCode.findByCode(res.getEcode());
+        ResponseCode responseCode = ResponseCode.findByCode(res.getCode());
         ResponseEntity<T> responseEntity = new ResponseEntity<>();
         responseEntity.setData(null);
         responseEntity.setResponseCode(responseCode);
@@ -136,7 +138,7 @@ public class ResponseEntity<T> implements Serializable {
     }
 
     private void setResponseCode(ResponseCode responseCode) {
-        this.ecode = responseCode.getCode();
+        this.code = responseCode.getCode();
         this.message = responseCode.getLabel();
         this.timestamp = System.currentTimeMillis();
     }
@@ -146,7 +148,7 @@ public class ResponseEntity<T> implements Serializable {
         return "ResponseEntity{" + "message='" + message + '\'' +
                 ", timestamp=" + timestamp +
                 ", exception='" + exception + '\'' +
-                ", ecode=" + ecode +
+                ", ecode=" + code +
                 ", httpStatus=" + httpStatus +
                 ", path='" + path + '\'' +
                 ", data=" + data +

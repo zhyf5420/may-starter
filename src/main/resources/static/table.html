@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <script src="layui/layui.js" charset="utf-8"></script>
+
+</head>
+
+<body>
+
+<div class="demoTable">
+    搜索姓名：
+    <div class="layui-inline">
+        <input class="layui-input" id="demoReload" autocomplete="off">
+    </div>
+    <button class="layui-btn" onclick="search()">搜索</button>
+</div>
+
+<table class="layui-hide" id="table" lay-filter="table"></table>
+
+<script>
+    let token = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
+    let tableIns;
+    let tableOptions = {
+        elem: '#table',
+        url: '/demo/table/user',
+        method: 'post',
+        contentType: 'application/json',
+        headers: {
+            auth: token
+        },
+        request: {
+            pageName: 'page',
+            limitName: 'size'
+        },
+        parseData: function (res) {
+            return {
+                'code': res.code,
+                'msg': res.message,
+                'data': res.data == null ? null : res.data.content,
+                'count': res.data == null ? null : res.data.totalElements
+            }
+        },
+        cols: [[
+            {type: 'checkbox', fixed: 'left'},
+            {type: 'numbers', title: "序号"},
+            {field: 'id', width: 80, title: 'ID', sort: true, align: 'center'},
+            {field: 'userName', width: 80, title: '姓名'},
+            {field: 'accountName', width: 100, title: '账号'},
+            {field: 'phoneNum', width: 200, title: '手机号码', sort: true},
+            {field: 'createTime', width: 200, title: '创建时间', sort: true},
+            {field: 'remark', title: '备注', edit: 'text', sort: true},
+            {fixed: 'right', width: 200, toolbar: '#barDemo'}
+        ]],
+        page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+            layout: ['prev', 'page', 'next', 'limit', 'count'], //自定义分页布局
+            groups: 3, //只显示 x 个连续页码
+        },
+        limits: [10, 20, 50, 100, 500],
+        autoSort: false, //禁用前端自动排序
+        height: 'full-200',
+        toolbar: '#toolbarDemo',
+        done: function (res, curr, count) {
+            layer.msg("成功加载 " + res.data.length + " 条数据", {time: 1000});
+        }
+    };
+
+    layui.use('table', function () {
+        let table = layui.table;
+
+        //表格渲染
+        tableIns = table.render(tableOptions);
+
+        //监听头工具栏事件
+        //注：tool是工具条事件名，table是table原始容器的属性 lay-filter="对应的值"
+        table.on('toolbar(table)', function (obj) {
+            let checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'getCheckData':
+                    layer.alert(JSON.stringify(checkStatus.data));
+                    break;
+                case 'getCheckLength':
+                    layer.msg('选中了：' + checkStatus.data.length + ' 个');
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选' : '未全选');
+                    break;
+            }
+        });
+
+        //监听行工具事件
+        table.on('tool(table)', function (obj) {
+            let data = obj.data; //获得当前行数据
+
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                    layer.msg('删除id=' + data.id)
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data));
+                obj.update({
+                    userName: 'aaa',
+                    accountName: 'bbb'
+                });
+            }
+        });
+
+        //监听单元格编辑
+        table.on('edit(table)', function (obj) {
+            let value = obj.value; //得到修改后的值
+            let data = obj.data;   //得到所在行所有键值
+            let field = obj.field; //得到字段
+            layer.msg('[ID: ' + data.id + '] ' + field + ' 字段更改为：' + value);
+        });
+
+        //监听排序事件
+        table.on('sort(table)', function (obj) {
+            console.log(obj.field); //当前排序的字段名
+            console.log(obj.type); //当前排序类型：desc（降序）、asc（升序）、null（空对象，默认排序）
+            console.log(this); //当前排序的 th 对象
+
+            //尽管我们的 table 自带排序功能，但并没有请求服务端。
+            //有些时候，你可能需要根据当前排序的字段，重新向服务端发送请求，从而实现服务端排序，如：
+            tableIns.reload({
+                initSort: obj, //记录初始排序，如果不设的话，将无法标记表头的排序状态。
+                where: {
+                    sort: obj.field,
+                    order: obj.type === 'asc' ? 'ASC' : 'DESC',
+                }
+            });
+
+            layer.msg('服务端排序。order by ' + obj.field + ' ' + obj.type);
+        });
+    });
+
+    //搜索
+    function search() {
+        let demoReload = layui.$('#demoReload');
+
+        tableIns.reload({
+            where: {
+                userName: demoReload.val()
+            },
+            page: {
+                curr: 1
+            }
+        });
+    }
+</script>
+
+<script id="toolbarDemo" type="text/html">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    </div>
+</script>
+
+<script id="barDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+
+    {{# if(d.id>5000){ }}
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+    {{# } }}
+</script>
+
+</body>
+</html>

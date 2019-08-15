@@ -53,7 +53,7 @@ public class PageRequest extends AbstractPageRequest {
     }
 
     public static PageRequest of(BasePageRequest request) {
-        return new PageRequest(request.getNumber(), request.getSize(), request.getOrder(), request.getSort());
+        return new PageRequest(request.getPage(), request.getSize(), request.getOrder(), request.getSort());
     }
 
     public static PageRequest of(int page, int size) {

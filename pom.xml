@@ -23,7 +23,6 @@
         <fastjson.version>1.2.32</fastjson.version>
         <springfox-swagger2.version>2.5.0</springfox-swagger2.version>
         <spring-tx.version>4.3.8.RELEASE</spring-tx.version>
-        <spring-security-core.version>4.2.13</spring-security-core.version>
         <jpa-spec.version>3.2.3</jpa-spec.version>
         <thumbnailator.version>0.4.8</thumbnailator.version>
         <hutool-all.version>4.5.1</hutool-all.version>
@@ -43,7 +42,6 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>${spring-security-core.version}</version>
         </dependency>
         <!--测试-->
         <dependency>

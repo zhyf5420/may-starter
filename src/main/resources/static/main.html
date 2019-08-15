@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout 后台大布局 - Layui</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script src="layui/layui.js"></script>
+    <script>
+        layui.use('element', function () {})
+    </script>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">layui 后台布局</div>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">贤心
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="index.html">退了</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-shrink="none">
+                <li class="layui-nav-item"><a target="layui-body" href="table.html">表格示例</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:">菜单1</a>
+                    <dl class="layui-nav-child">
+                        <dd><a target="layui-body" href="http://www.baidu.com">百度</a></dd>
+                        <dd><a target="layui-body" href="http://www.sina.com">新浪</a></dd>
+                        <dd><a target="layui-body" href="http://www.taobao.com">淘宝</a></dd>
+                        <dd><a target="layui-body" href="http://www.360.com">360</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a target="layui-body" href="https://www.layui.com/demo/table.html">layui-demo</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a target="layui-body" href="https://www.layui.com/doc/">layui文档</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <iframe name="layui-body" src="default.html" style="width: 100%;height: 98%;padding: 5px" frameborder="0"></iframe>
+    </div>
+
+    <div class="layui-footer" style="text-align: center">
+        <div class="layui-main">
+            <p>&copy; 2019 <a href="/">layui.com</a> MIT license</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
