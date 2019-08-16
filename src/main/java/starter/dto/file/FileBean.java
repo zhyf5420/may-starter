@@ -1,4 +1,4 @@
-package starter.bussiness.dto.file;
+package starter.dto.file;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

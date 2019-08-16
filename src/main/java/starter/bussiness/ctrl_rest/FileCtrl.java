@@ -10,8 +10,8 @@ import org.springframework.web.multipart.MultipartFile;
 import starter.base.dto.ResponseEntity;
 import starter.base.utils.RandomUtil;
 import starter.base.utils.acs.ACS;
-import starter.bussiness.service.FileService;
-import starter.bussiness.dto.file.ExcelRequest;
+import starter.service.FileService;
+import starter.dto.file.CreateExcelRequest;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -40,7 +40,7 @@ public class FileCtrl {
     @ACS
     @ApiOperation(value = "excel导出通用接口")
     @PostMapping("/file/excel-gen")
-    public ResponseEntity<String> createExcel(@Valid @RequestBody ExcelRequest requestBean) {
+    public ResponseEntity<String> createExcel(@Valid @RequestBody CreateExcelRequest requestBean) {
         String url = fileService.createExcel(requestBean, RandomUtil.uuid()).getUrl();
         return ResponseEntity.ok(url);
     }

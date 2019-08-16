@@ -1,4 +1,4 @@
-package starter.bussiness.dto.file;
+package starter.dto.file;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -16,7 +16,7 @@ import java.util.Map;
 @Data
 @ApiModel
 @Accessors(chain = true)
-public class ExcelRequest {
+public class CreateExcelRequest {
 
     @ApiModelProperty("list map 文档内容 优先使用")
     private List<Map<String, String>> mapContent;

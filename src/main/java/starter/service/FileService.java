@@ -1,4 +1,4 @@
-package starter.bussiness.service;
+package starter.service;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.poi.excel.ExcelUtil;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import starter.base.config.AppConfig;
 import starter.base.utils.CollectionUtil;
 import starter.base.utils.RandomUtil;
-import starter.bussiness.dto.file.ExcelRequest;
-import starter.bussiness.dto.file.FileBean;
+import starter.dto.file.CreateExcelRequest;
+import starter.dto.file.FileBean;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -66,7 +66,7 @@ public class FileService {
     /**
      * 通用excel导出
      */
-    public FileBean createExcel(ExcelRequest requestBean, String fileName) {
+    public FileBean createExcel(CreateExcelRequest requestBean, String fileName) {
         String url = RandomUtil.uuid() + File.separator + fileName + ".xlsx";
         File file = new File(appConfig.getTempPath() + File.separator + url);
         ExcelWriter writer = ExcelUtil.getWriter(file);

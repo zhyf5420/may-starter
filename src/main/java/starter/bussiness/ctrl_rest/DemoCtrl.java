@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import starter.base.dto.PageResponse;
 import starter.base.dto.ResponseEntity;
 import starter.base.utils.CollectionUtil;
-import starter.bussiness.dto.account.AccountResponse;
+import starter.dto.account.AccountResponse;
 
 import javax.validation.Valid;
 import java.util.List;

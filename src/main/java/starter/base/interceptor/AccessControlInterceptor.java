@@ -7,7 +7,7 @@ import starter.base.constants.ResponseCode;
 import starter.base.exception.BusinessException;
 import starter.base.utils.CollectionUtil;
 import starter.base.utils.acs.ACS;
-import starter.bussiness.service.AuthService;
+import starter.service.AuthService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;

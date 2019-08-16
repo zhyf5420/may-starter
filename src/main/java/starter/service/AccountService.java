@@ -1,4 +1,4 @@
-package starter.bussiness.service;
+package starter.service;
 
 import com.github.wenhao.jpa.Specifications;
 import lombok.extern.slf4j.Slf4j;
@@ -7,19 +7,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import starter.base.RedisCachedService;
 import starter.base.constants.ResponseCode;
 import starter.base.constants.Role;
 import starter.base.dto.PageRequest;
 import starter.base.dto.PageResponse;
 import starter.base.exception.BusinessException;
 import starter.base.utils.*;
-import starter.bussiness.dto.account.AccountPageRequest;
-import starter.bussiness.dto.account.AccountPasswordRequest;
-import starter.bussiness.dto.account.AccountRequest;
-import starter.bussiness.dto.account.AccountResponse;
-import starter.bussiness.dto.auth.LoginResponse;
+import starter.base.utils.cache.ICache;
 import starter.dao.AccountRepository;
+import starter.dto.account.AccountPageRequest;
+import starter.dto.account.AccountPasswordRequest;
+import starter.dto.account.AccountRequest;
+import starter.dto.account.AccountResponse;
+import starter.dto.auth.LoginResponse;
 import starter.entity.Account;
 
 import javax.annotation.Resource;
@@ -37,13 +37,13 @@ import java.util.UUID;
 public class AccountService {
 
     @Resource
+    private ICache cache;
+
+    @Resource
     private AuthService authService;
 
     @Resource
     private AccountRepository accountRepository;
-
-    @Resource
-    private RedisCachedService redisCachedService;
 
     private void convert2Entity(AccountRequest requestBean, Account account) {
         ObjectUtil.copyNotNullBean(requestBean, account);
@@ -117,9 +117,9 @@ public class AccountService {
         if (flag) {
             String token = account.getToken();
             if (StringUtil.isNotEmpty(token)) {
-                LoginResponse o = (LoginResponse) redisCachedService.get(token);
+                LoginResponse o = (LoginResponse) cache.get(token);
                 o.setUserName(requestBean.getUserName()).setPhoneNum(requestBean.getPhoneNum());
-                redisCachedService.set(token, o);
+                cache.set(token, o);
             }
         }
 

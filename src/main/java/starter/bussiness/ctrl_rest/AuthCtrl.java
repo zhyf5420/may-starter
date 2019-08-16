@@ -10,9 +10,9 @@ import starter.base.constants.ResponseCode;
 import starter.base.dto.ResponseEntity;
 import starter.base.exception.BusinessException;
 import starter.base.utils.acs.ACS;
-import starter.bussiness.service.AuthService;
-import starter.bussiness.dto.auth.LoginRequest;
-import starter.bussiness.dto.auth.LoginResponse;
+import starter.service.AuthService;
+import starter.dto.auth.LoginRequest;
+import starter.dto.auth.LoginResponse;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;

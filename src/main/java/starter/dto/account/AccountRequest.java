@@ -1,4 +1,4 @@
-package starter.bussiness.dto.account;
+package starter.dto.account;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

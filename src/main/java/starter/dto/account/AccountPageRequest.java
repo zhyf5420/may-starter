@@ -1,4 +1,4 @@
-package starter.bussiness.dto.account;
+package starter.dto.account;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;

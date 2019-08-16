@@ -1,4 +1,4 @@
-package starter.bussiness.dto.auth;
+package starter.dto.auth;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

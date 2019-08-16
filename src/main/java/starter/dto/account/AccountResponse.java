@@ -1,4 +1,4 @@
-package starter.bussiness.dto.account;
+package starter.dto.account;
 import java.util.Date;
 
 import io.swagger.annotations.ApiModel;
