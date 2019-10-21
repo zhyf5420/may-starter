@@ -11,7 +11,7 @@ import starter.base.utils.PasswordUtil;
 import starter.base.utils.StringUtil;
 import starter.base.utils.WebContextUtil;
 import starter.base.utils.cache.ICache;
-import starter.dao.AccountRepository;
+import starter.repository.AccountRepository;
 import starter.dto.auth.LoginRequest;
 import starter.dto.auth.LoginResponse;
 import starter.entity.Account;

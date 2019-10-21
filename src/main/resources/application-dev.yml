@@ -18,13 +18,13 @@ spring:
       hibernate:
         format_sql: true
         enable_lazy_load_no_trans: true
-  redis:
-    database: 0
-    host: 192.168.6.129
-    port: 6379
-    password:
+#  redis:
+#    database: 0
+#    host: 192.168.6.129
+#    port: 6379
+#    password:
   resources:
-    static-locations: classpath:/META-INF/resources/,classpath:/static/,classpath:/public/
+    static-locations: classpath:/META-INF/resources/,classpath:/static/,classpath:/public/,file:${app.tempPath},file:${app.filePath}
   http:
     multipart:
       enabled: true

@@ -1,12 +1,20 @@
 spring:
   application:
     name: may-starter
+  freemarker:
+    template-loader-path: classpath:/templates/
+    charset: utf-8
+    cache: false
+    expose-request-attributes: true
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
+    suffix: .ftl
   profiles:
     active: dev
 
 server:
   port: 8081
-#  context-path: /${spring.application.name}
+  context-path: /${spring.application.name}
 
 #系统设置
 app:

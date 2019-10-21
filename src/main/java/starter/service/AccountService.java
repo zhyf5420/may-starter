@@ -14,7 +14,7 @@ import starter.base.dto.PageResponse;
 import starter.base.exception.BusinessException;
 import starter.base.utils.*;
 import starter.base.utils.cache.ICache;
-import starter.dao.AccountRepository;
+import starter.repository.AccountRepository;
 import starter.dto.account.AccountPageRequest;
 import starter.dto.account.AccountPasswordRequest;
 import starter.dto.account.AccountRequest;

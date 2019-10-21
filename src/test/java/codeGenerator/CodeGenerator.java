@@ -2,6 +2,7 @@ package codeGenerator;
 
 import freemarker.template.TemplateExceptionHandler;
 import io.swagger.annotations.ApiModelProperty;
+import starter.entity.Account;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -31,8 +32,8 @@ public class CodeGenerator {
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        //step1(Article.class, "xxxx");
-        //step2(Article.class, "xxxx");
+        step1(Account.class, "xxxx");
+        step2(Account.class, "xxxx");
     }
 
     private static void step1(Class<?> clazz, String module) {
