@@ -20,7 +20,7 @@
         <aspectj.version>1.8.10</aspectj.version>
         <lombok.version>1.16.16</lombok.version>
         <validation-api.version>1.1.0.Final</validation-api.version>
-        <fastjson.version>1.2.32</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <springfox-swagger2.version>2.5.0</springfox-swagger2.version>
         <spring-tx.version>4.3.8.RELEASE</spring-tx.version>
         <jpa-spec.version>3.2.3</jpa-spec.version>
